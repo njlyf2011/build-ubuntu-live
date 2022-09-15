@@ -410,7 +410,7 @@ Ubuntu 22.04 已经放弃了使用 ISOLINUX 作为 Legacy 方式引导，因此 
 输入这个命令，创建一个仅仅保留必要项目的 Grub Legacy 镜像。
 
 ```shell
-grub-mkstandalone --format=i386-pc --output=grub-pc-img.img --install-modules="linux linux16 normal iso9660 biosdisk memdisk search configfile tar ls" --modules="linux linux16 normal iso9660 biosdisk search configfile" --locales="" --fonts="" /boot/grub/grub.cfg=<ISO文件夹的绝对路径>/boot/grub/grub.cfg
+grub-mkstandalone --format=i386-pc --output=grub-pc-img.img --install-modules="linux linux16 normal iso9660 biosdisk memdisk search configfile tar ls" --modules="linux linux16 normal iso9660 biosdisk search configfile" --locales="" --fonts="" /boot/grub/grub.cfg=<ISO文件夹的绝对路径>/EFI/boot/grub/grub.cfg
 ```
 
 ​	`--locales --fonts` 应该留空，缩减体积。
@@ -510,7 +510,7 @@ xorriso \
 
 1. https://help.ubuntu.com/community/LiveCDCustomizationFromScratch
 2. https://help.ubuntu.com/community/LiveCDCustomization
-3. grub-mkimage 的 man 手册；grub-mkstandalone 的 man 手册。
+3. `grub-mkimage 的 man 手册；grub-mkstandalone 的 man 手册。`
 4. https://blog.csdn.net/a5nan/article/details/51361904
 5. https://rohhie.net/ubuntu20-04-try-to-make-a-live-cd-from-scratch-basic
 6. https://wiki.archlinux.org/title/GRUB
