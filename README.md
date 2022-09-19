@@ -69,8 +69,9 @@ debootstrap 是 Debian 系发行版的一个实用工具，允许您基于在线
 
 Ubuntu Base 是 Ubuntu 的基本系统，说通俗点，就是 Ubuntu 帮你打包好的 debootstrap 后的基本系统。我个人更倾向这一种，因为方便。
 
-
 如果你想使用 debootstrap 工具构建一个基本系统，请运行：`debootstrap jammy chroot https://mirrors.ustc.edu.cn/ubuntu`
+
+如果你不想 debootstrap 后的 chroot 目录里留下 apt 缓存的话（实际上也没什么用），你可以加 `--variant=minbase` 参数。
 
 mirrors.ustc.edu.cn 是中国科学技术大学的开源镜像站，你可以换成阿里的、华为的或者清华源，如果你所在高校也有开源镜像站，换成你学校的效果更好。
 
@@ -80,7 +81,7 @@ mirrors.ustc.edu.cn 是中国科学技术大学的开源镜像站，你可以换
 
 ```shell
 cd chroot
-tar -xvf ../ubuntu-base-22.04-base-amd64.tar.gz`
+tar -xvf ../ubuntu-base-22.04.1-base-amd64.tar.gz`
 cd ..
 ```
 
@@ -147,7 +148,7 @@ mount none -t devpts chroot/dev/pts
 
 我们先更新一下软件源，升级一下基础系统里的软件包。
 
-```
+```shell
 apt update
 apt upgrade
 ```
@@ -168,12 +169,12 @@ apt install linux-generic
 
 
 
-#### 安装 Ubuntu 标准套件
+#### 安装 Ubuntu 基础套件和标准套件
 
 这是官方教程所推荐的，当然可以省略，但不推荐。
 
 ```shell
-apt install ubuntu-standard
+apt install ubuntu-minimal ubuntu-standard
 ```
 
 标准套件包括很多实用工具，是推荐安装的。
@@ -195,7 +196,7 @@ apt install casper discover laptop-detect os-prober
 安装 NetworkManager，顾名思义，网络套件。如果你选择在后续安装桌面环境，那么这一步可以省略。
 
 ```shell
-apt-get install --no-install-recommends network-manager
+apt install --no-install-recommends network-manager
 ```
 
 
@@ -230,7 +231,7 @@ apt install flatpak
 4. ubuntu-mate-desktop，Mate 桌面
 5. lubuntu-dekstop，LXQT。
 
-6. vanilla-gnome-desktop，原生GNOME桌面，但是安装后需要再配置。
+6. vanilla-gnome-desktop，原生 GNOME 桌面，但是安装后需要再配置。
 
 如果你觉得套件里面有你不喜欢的组件，你也可以选择手动安装，比如 `apt install kde-standard`。
 
@@ -261,13 +262,13 @@ BleachBit 是一款开源的垃圾清理工具，所以我可以：`apt install 
 GNOME：
 
 ```shell
-apt-get install ubiquity-frontend-gtk ubiquity-casper ubiquity-slideshow-ubuntu ubiquity-ubuntu-artwork ubiquity-frontend-debconf
+apt install ubiquity-frontend-gtk ubiquity-casper ubiquity-slideshow-ubuntu ubiquity-ubuntu-artwork ubiquity-frontend-debconf
 ```
 
 KDE：
 
 ```shell
-apt-get install ubiquity-frontend-kde ubiquity-casper ubiquity-slideshow-kubuntu ubiquity-ubuntu-artwork ubiquity-frontend-debconf
+apt install ubiquity-frontend-kde ubiquity-casper ubiquity-slideshow-kubuntu ubiquity-ubuntu-artwork ubiquity-frontend-debconf
 ```
 
 LXDE、MATE 之类以此类推，比如 ubiquity-slideshow-lubuntu
